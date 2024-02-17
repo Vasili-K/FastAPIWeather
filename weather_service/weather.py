@@ -1,7 +1,6 @@
 from aiohttp import ClientSession
 
-from weather_sevice.data_parser import parse_weather_data
-from weather_sevice.exceptions import InvalidWeatherDataSetError
+from weather_service.data_parser import parse_weather_data
 
 
 async def request_weather(city):
@@ -14,5 +13,5 @@ async def request_weather(city):
             try:
                 result = parse_weather_data(weather_json)
                 return result
-            except InvalidWeatherDataSetError:
+            except KeyError:
                 return "No data"

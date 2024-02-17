@@ -1,6 +1,6 @@
 
 
-class WeatherParseError(BaseException):
+class WeatherParseError(Exception):
     """Common error for weather data parsing"""
 
 
