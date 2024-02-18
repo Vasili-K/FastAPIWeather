@@ -2,6 +2,8 @@ from sqlalchemy import Column, Integer, String, DateTime, Float
 from sqlalchemy.orm import declarative_base
 from datetime import datetime
 
+# from database.engine_orm_database import engine
+
 Base = declarative_base()
 
 
@@ -27,5 +29,6 @@ class WeatherUser(Base):
     surname = Column(String(100), nullable=False)
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
+
 
 # Base.metadata.create_all(engine)
