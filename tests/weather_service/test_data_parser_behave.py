@@ -10,12 +10,12 @@ from weather_service.data_parser import parse_weather_data
 def context():
     yield {}
 
-# tests/weather/
+# tests/weather_service/
 
 
 @pytest.fixture
 def request_data():
-    with open('tests/weather/fixtures/weather_data.json') as data:
+    with open('tests/weather_service/fixtures/weather_data.json') as data:
         weather_data = json.load(data)
         yield weather_data
 

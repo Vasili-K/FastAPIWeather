@@ -1,10 +1,8 @@
-import time
-
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 from middleware.class_based_middlewear import CustomLoggingMiddlewareClass
 from middleware.function_based_middlewear import add_process_time_header
-from weather_endpoints import weather_router
+from weather_service.weather_endpoints import weather_router
 
 # main point of interaction to create API
 app = FastAPI()

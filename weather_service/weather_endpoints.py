@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from models.weather_models import WeatherResponse
 from weather_service.save_to_db import save_weather
-from weather_service.weather import request_weather
+from weather_service.weather_request import request_weather
 
 
 weather_router = APIRouter()
