@@ -1,5 +1,10 @@
 name: GitHub Actions
-on: [push]
+on: [push, pull_request]
+
+env:
+  REGISTRY: vasilikul
+  IMAGE_NAME: fastapi-weather
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,3 +20,19 @@ jobs:
       - name: Run unit tests
         run: pytest
 
+  build_and_push:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) .
+
+      - name: Lok in DockerHub
+        run: docker login -u ${{ secrets.DOCKER_HUB_LOGIN }}  -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Push new version to DockerHub
+        run: docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
